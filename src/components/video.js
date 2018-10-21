@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Visibility from 'react-visibility-sensor'
 
 export default class Video extends React.Component {
 
@@ -45,14 +44,6 @@ export default class Video extends React.Component {
         title='Video'
       />
     )
-
-    if (!this.state.src) {
-      return (
-        <Visibility onChange={vis => vis && this.loadSrc()} partialVisibility={true}>
-          {iframe}   
-        </Visibility>
-      )
-    }
 
     return iframe
   }
