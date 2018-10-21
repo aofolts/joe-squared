@@ -1,0 +1,35 @@
+@import (reference) 'global.less';
+
+.intro {
+  .ta(center);
+}
+
+.menu {
+  .mar(@m -.5em 0 0);
+}
+
+.navItem {
+  .bd(@bd solid @dgrey); .pad(1em); .ib; .fs(@p);
+  .mar(.5em); .cur(pointer); .fw(500);
+}
+
+.activeNavItem {
+  .bg(@prime); .c(white);
+}
+
+.foodItemsSection {
+  .bg(@lgrey);
+}
+
+.grid {
+  .dsp(grid); .gtc(repeat(auto-fill,minmax(25rem,1fr)));
+  .gg(@ml @m);
+}
+
+.foodItem {
+  .hide; .fs(@p);
+}
+
+.activeFoodItem {
+  .dsp(block); 
+}

@@ -1,0 +1,47 @@
+@import (reference) 'global.less';
+
+.slider {
+  .h(70rem); .mh(100vh); .w; .of(hidden);
+}
+
+
+.nav {
+  .abs; .z(3); .mw; .dsp(flex);
+
+  @media @min-tablet {
+    .r(calc(50% ~'-' 60rem)); .flxd(column); .pr(var(--h)); .h; .jc(center);
+  }
+
+  @media @phone {
+    .b; .jc(center); .aic; .w; .pad(@s);
+  }
+}
+
+.navItem {
+  .dsp(flex); --size: @s; .cur(pointer);
+
+  @media @min-tablet {
+    .flxd(row-reverse); .aic;
+
+    &:hover {
+      .navItemTitle {.dsp(block);}
+    }
+  }
+}
+
+.navItemTitle {
+  .hide; .fs(@p2); .c(white); .fw(500); .lh(100%);
+}
+
+.navItemIcon {
+  .wh(@s); .bd(2px solid white); .br; .mar(@xs); 
+  .bg(transparent); .trn(background .2s ease-in-out);
+
+  @media @phone {
+    .wh(@xs); .mar(@xxs);
+  }
+}
+
+.currentNavItemIcon {
+  .bg(white);
+}

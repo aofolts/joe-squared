@@ -1,0 +1,21 @@
+@import (reference) 'global.less';
+
+.grid {
+  .dsp(grid); .gg(@s); .gtc(repeat(auto-fill,minmax(50rem,1fr)));
+
+  @media screen and (max-width: 50rem) {
+    .gtc(1fr);
+  }
+}
+
+.item {
+  .pb(66%); .of(hidden);
+
+  @supports not (display: grid) {
+    .ib; .mar(@s); .w; .mw(50rem);
+  }
+}
+
+.imageWrap {
+  .wh;
+}

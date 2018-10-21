@@ -1,0 +1,26 @@
+@import (reference) 'global.less';
+
+.sorter {
+  .ta(center);
+}
+
+.nav {
+  .ib;
+}
+
+.navItem {
+  .ib; .fs(@p2); .fw(500); .pad(calc(@ms ~'/' 2)); .cur;
+  .bdb(2px solid rgba(0,0,0,.1)); 
+}
+
+.selectedNavItem {
+  .bdb(2px solid @prime);
+}
+
+.item {
+  .hide; .mt(@m); .fs(@p); .lh(@line-height);
+}
+
+.selectedItem {
+  .dsp(block);
+}

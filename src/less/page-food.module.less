@@ -1,0 +1,29 @@
+@import 'global.less';
+
+.archiveSection {
+  .bg(@lgrey);
+}
+
+.grid {
+  .dsp(grid); .gtc(repeat(auto-fill,minmax(35rem,1fr))); .gg(@m);
+}
+
+.card {
+  .dsp(block); .ta(center);
+
+  &:hover {
+    @cardHover();
+  }
+
+  @supports not (display: grid) {
+    .ib; .w(35rem); .mw; .mar(@xs);
+  }
+}
+
+.cardMedia {
+  .pb(50%);
+}
+
+.cardTitle {
+  .bg(@prime); .pad(@s); .c(white);
+}

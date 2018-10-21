@@ -1,0 +1,31 @@
+@import (reference) 'global.less';
+@
+
+.communitySection {
+  .bg(@lgrey);
+}
+
+.card-community {
+  .dsp(flex); .flxd(column);
+
+  &:hover {
+    @card-hover();
+  }
+}
+
+.media {
+  .w; .pb(56.25%);
+}
+
+.background {
+  @mediaBackground();
+}
+
+.category {
+  .abs; .t; .fs(@p3); .trf(translateY(-50%)); .bg(@prime); .pad(.35em .5em .2em); .lh(100%);
+  .c(white); .fw(500); .upper;
+}
+
+.content {
+  .pad(@s); .bg(white); .ta(left); 
+}

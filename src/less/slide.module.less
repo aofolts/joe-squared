@@ -1,0 +1,58 @@
+@import (reference) 'global.less';
+
+.slide {
+  .abs; .t; .l; .wh; .dsp(flex); .aic; .jc(center); .c(white);
+}
+
+.slideHeadline {
+  .fs(var(--h1)); .ttf(uppercase); .mb(@s); .fw(700); .c(white);
+}
+
+.slideBackground {
+  .wh; .obf(cover); .l; .t; .flt(brightness(.55));
+  .pos(absolute ~'!important');
+}
+
+.slide {
+  .abs; .wh; .trn(clip-path .5s ease-in-out); .bg(@grey-dark);
+}
+
+.inactiveSlide {
+  .z(1);
+  // Revealed
+  clip-path: polygon(0 0,100% 0,100% 100%,0 100%);
+}
+
+.currentSlide {
+  .z(2);
+  // Revealed
+  clip-path: polygon(0 0,100% 0,100% 100%,0 100%);
+}
+
+.previousSlide {
+  .z(3);
+  // Hide, to right
+  clip-path: polygon(100% 0,100% 0,100% 100%,100% 100%);
+}
+
+.slideContent {
+  .w(120rem); .mw; .pad(var(--h));
+  @media @min-tablet {
+    .pr(20rem);
+  }
+}
+
+.buttons {
+  @media @phone {
+    .dsp(flex); .flxd(column); .ta(center);
+  }
+}
+
+.button1 {
+  @media @min-tablet {
+    .mr(@s);
+  }
+  @media @phone {
+    .mb(@s);
+  }
+}

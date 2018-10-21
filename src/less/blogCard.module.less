@@ -1,0 +1,30 @@
+@import (reference) 'global.less';
+
+.card {
+  .dsp(flex); .flxd(column);
+ 
+  &:hover {
+    @card-hover();
+  }
+}
+
+.excerpt {
+  .fs(@p2);
+}
+
+.media {
+  .w; .pb(56.25%);
+}
+
+.category {
+  .abs; .t; .fs(@p3); .trf(translateY(-50%)); .bg(@prime); .pad(.35em .5em .2em); .lh(100%);
+  .c(white); .fs(@p3); .upper;
+}
+
+.content {
+  .pad(@s); .bg(white); .ta(left); 
+}
+
+.readMore {
+  .fs(@p2); .mb(0); .txd(underline);
+}

@@ -1,0 +1,173 @@
+@import 'yetti/style.less';
+@import 'yetti/theme/content.less';
+@import 'vars.less';
+
+////////////////////////////////////////////////////////
+// TYPE (tpe)
+////////////////////////////////////////////////////////
+
+@font-face {
+  .ff('joesquared');
+  .fw(400);
+  src: url('/static/fonts/j2-regular.otf');
+}
+
+@font-face {
+  .ff('joesquared');
+  .fw(500);
+  src: url('/static/fonts/j2-medium.otf');
+}
+
+@font-face {
+  .ff('joesquared');
+  .fw(700);
+  src: url('/static/fonts/j2-bold.otf');
+}
+
+////////////////////////////////////////////////////////
+// CONTENT (cnt)
+////////////////////////////////////////////////////////
+
+.container-map {
+  .w; .pb(50%); .mb(@m);
+
+  .map {@mediaBackground();}
+}
+
+
+////////////////////////////////////////////////////////
+// HEADINGS (hds)
+////////////////////////////////////////////////////////
+
+h1,h2,h3,h4,h5 {
+  .lh(1.1em);
+  .mb(.66em);
+}
+
+h1 {
+  .ttf(uppercase);
+  .fw(bolder);
+}
+
+h2 {
+  .fs(@h2);
+}
+
+h3 {
+  .fs(@h3);
+}
+
+////////////////////////////////////////////////////////
+// PARAGRAPH (prg)
+////////////////////////////////////////////////////////
+
+p,.p,.p2,.p3 {
+  .lh(@line-height);
+  .mb(1em);
+}
+
+p,.p {
+  .fs(@p);
+
+  a {
+    .txd(underline);
+  }
+}
+
+.p2 {
+  .fs(@p2 * .9);
+}
+
+////////////////////////////////////////////////////////
+// BUTTONS (btn)
+////////////////////////////////////////////////////////
+
+.button {
+  .pad(1em 1.1em); .fs(@p); .cur(pointer); .ib; .fw(500);
+}
+
+.button-primary {
+  .bg(@prime); .c(white); &:extend(.button);
+}
+
+////////////////////////////////////////////////////////
+// ANIMATION (anm)
+////////////////////////////////////////////////////////  
+
+.card-hover() {
+  .trf(scale(1.05));
+}
+
+////////////////////////////////////////////////////////
+// FOOTER (ftr)
+////////////////////////////////////////////////////////
+
+#footer {
+  @theme-dark(); .c(white);
+}
+
+#section-footer-newsletter {
+
+  .container-newsletter {
+    .grid(@cols:2);
+  }
+
+  input {
+    .bd(@bd solid white); .fs(@p); .bg(none); .pad(.5em);
+    .mw; .w(35rem);
+  } 
+
+  .field {
+    .mb(@s);
+  }
+
+  .submit {
+    .fs(@p); .fw(500); .bg(none); .c(white); .cur(pointer);
+  }
+}
+
+#footer-bar {
+  .bg(@dtrans-lightest); 
+  .fs(@p3);
+
+  @media @min-laptop {
+    .h(@m); .flx; .aic; .jcsb; .pad(0 @s);
+  }
+
+  @media @max-tablet {
+    .ta(center); .pad(@m); .h(auto); .ta(center);
+
+    .item+.item {
+      .mt(@s);
+    }
+  }
+
+  .social {
+    .link {
+      &+.link {
+        .ml(@xs);
+      }
+    }
+
+    .icon {
+      .h(@p3); filter: brightness(1) invert(1);
+    }
+  }
+}
+
+#credit-link {
+  .bdb(@bd solid fade(white,25%));
+}
+
+////////////////////////////////////////////////////////
+// INTRO (ntr)
+////////////////////////////////////////////////////////
+
+#section-intro {
+  .ta(center);
+}
+
+////////////////////////////////////////////////////////
+// MEDIA (mda)
+////////////////////////////////////////////////////////
+

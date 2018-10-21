@@ -1,0 +1,57 @@
+@import (reference) 'global.less';
+
+////////////////////////////////////////////////////////
+// FOOTER (ftr)
+////////////////////////////////////////////////////////
+
+.footer {
+  .themePrime;
+}
+
+.input {
+  .bd(@bd solid white); .fs(@p); .bg(none); .pad(.5em);
+  .mw; .w(35rem); .c(white);
+} 
+
+.field {
+  .mb(@s);
+}
+
+.submit {
+  .fs(@p); .fw(500); .bg(none); .c(white); .cur(pointer);
+}
+
+.barItem {
+  .bd(none);
+}
+
+.bar {
+  .bg(@dtrans-lightest); 
+  .fs(@p3);
+
+  @media @min-laptop {
+    .h(@m); .flx; .aic; .jcsb; .pad(0 @s);
+  }
+
+  @media @max-tablet {
+    .ta(center); .pad(@m); .h(auto); .ta(center);
+
+    .barItem+.barItem {
+      .mt(@s);
+    }
+  }
+}
+
+.socialLink {
+  &+.socialLink {
+    .ml(@xs);
+  }
+}
+
+.socialIcon {
+  .h(@p3); filter: brightness(1) invert(1);
+}
+
+.creditLink {
+  .bdb(@bd dotted fade(white,25%));
+}

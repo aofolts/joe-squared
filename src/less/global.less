@@ -1,0 +1,272 @@
+@import '../../node_modules/yetti/global.less';
+@import (reference) 'header.module.less';
+
+////////////////////////////////////////////////////////
+// COLORS (clr)
+////////////////////////////////////////////////////////
+
+@prime: #D1232A;
+@lgrey: #f7f7f7;
+@dgrey: #444;
+@grey-dark: #444;
+@darkGrey: #444;
+@black: mix(#333,@prime,98%);
+
+@dtrans-lightest: rgba(0,0,0,.1);
+
+@lightGrey: #f7f7f7;
+
+.themeDark() {
+  .c(white); .bg(@dgrey);
+}
+
+.themePrime() {
+  .c(white); .bg(@prime);
+}
+
+////////////////////////////////////////////////////////
+// ANIMATION (nmt)
+////////////////////////////////////////////////////////
+
+@card-hover: {
+  .trf(scale(1.05));
+}
+
+@cardHover: {
+  .trf(scale(1.05));
+}
+
+////////////////////////////////////////////////////////
+// BUTTONS (bts)
+////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////
+// LINKS
+////////////////////////////////////////////////////////
+
+@textLink: {
+  .txd(underline);
+}
+
+////////////////////////////////////////////////////////
+// MEDIA (mda)
+////////////////////////////////////////////////////////
+
+@backgroundFilter: {.flt(brightness(.65));};
+
+////////////////////////////////////////////////////////
+// TYPE (TPE)
+////////////////////////////////////////////////////////
+
+@bold: 500;
+
+@font-family: 'joesquared';
+@line-height: 1.4em;
+
+
+@h1: 8rem;
+@h1-var: var(--h1);
+@h2: 4rem;
+@h3: 2.6rem;
+
+////////////////////////////////////////////////////////
+// HTML
+////////////////////////////////////////////////////////  
+
+// Add to yetti
+@fontFamily: 'joesquared';
+
+body {
+  // Move to yetti
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  .ff('joesquared');
+}
+
+////////////////////////////////////////////////////////
+// TYPE (tpe)
+////////////////////////////////////////////////////////
+
+@font-face {
+  .ff('joesquared');
+  .fw(400);
+  src: url('../fonts/j2-regular.otf');
+}
+
+@font-face {
+  .ff('joesquared');
+  .fw(500);
+  src: url('../fonts/j2-medium.otf');
+}
+
+@font-face {
+  .ff('joesquared');
+  .fw(700);
+  src: url('../fonts/j2-bold.otf');
+}
+
+@heavy: 700;
+
+////////////////////////////////////////////////////////
+// BUTTONS (btn)
+////////////////////////////////////////////////////////
+
+.primaryButton {
+  .bg(@prime); .c(white);
+  .pad(1em 1.1em); .fs(@p); .cur(pointer); .ib; .fw(500);
+}
+
+
+
+////////////////////////////////////////////////////////
+// HEADINGS (hds)
+////////////////////////////////////////////////////////
+
+h1,h2,h3,h4,h5 {
+  .lh(1.1em);
+  .mb(.66em);
+}
+
+body {
+  --h1: @h1;
+
+  @media @phone {
+    --h1: calc(@h2 ~'*' 1.2);
+  }
+}
+
+h1 {
+  .ttf(uppercase);
+  .fw(@heavy);
+}
+
+h2 {
+  .fs(@h2);
+}
+
+h3 {
+  .fs(@h3);
+  .fw(@medium);
+}
+
+@h4FontWeight: 400;
+
+h4 {
+  .fw(@h4FontWeight);
+}
+
+////////////////////////////////////////////////////////
+// PARAGRAPH (prg)
+////////////////////////////////////////////////////////
+
+@paragraphOpacity: .95;
+
+p,.p,.p2,.p3 {
+  .lh(@line-height);
+  .mb(1em);
+  .o(@paragraphOpacity);
+}
+
+p,.p {
+  .fs(@p);
+
+  a {
+    .txd(underline);
+  }
+}
+
+@p2: @p * .9;
+
+.p2 {
+  .fs(@p2);
+}
+
+@p3: @p2 * .8;
+
+@paragraphColor: lighten(@darkGrey,5%);
+
+////////////////////////////////////////////////////////
+// ANIMATION (anm)
+////////////////////////////////////////////////////////  
+
+.card-hover() {
+  .trf(scale(1.05));
+}
+
+////////////////////////////////////////////////////////
+// INTRO (ntr)
+////////////////////////////////////////////////////////
+
+#introSection {
+  .ta(center);
+}
+
+////////////////////////////////////////////////////////
+// GRID
+////////////////////////////////////////////////////////
+
+.thirdsGrid {
+  .dsp(grid); .gg(@m @m);
+
+  @media @minTablet {
+    .gtc(repeat(auto-fill,minmax(35rem,1fr)));
+  }
+
+  @media @phone {
+    .gtc(1fr);
+  }
+
+  @supports not (display: grid) {
+    @media @minTablet {
+      .flex;
+    }
+  }
+}
+
+.halvesGrid {
+  .dsp(grid); .gg(@m @m);
+
+  @media @minTablet {
+    .gtc(repeat(auto-fill,minmax(40rem,1fr)));
+  }
+
+  @media @phone {
+    .gtc(1fr);
+  }
+
+  @supports not (display: grid) {
+    @media @minTablet {
+      .flex;
+    }
+  }
+}
+
+////////////////////////////////////////////////////////
+// LAYOUT (lyt)
+////////////////////////////////////////////////////////
+
+.mainWrap {
+  .wrap(@main);
+}
+
+.mediumWrap {
+  .wrap(100rem);
+}
+
+.smallWrap {
+  .wrap(@blog);
+}
+
+////////////////////////////////////////////////////////
+// LINKS
+////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////
+// MEDIA (mda)
+////////////////////////////////////////////////////////
+  
+.mediaBackground {
+  .pos(absolute ~'!important'); .obf; .t; .l;
+}

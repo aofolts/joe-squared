@@ -1,0 +1,45 @@
+@import (reference) 'global.less';
+
+.menu {
+  .dsp(flex);
+}
+
+.primaryItem {
+  .h(var(--navHeight)); .flx; .aic; 
+  .fs(@p); .fw(300);
+
+  &+.primaryItem {
+    .ml(2em);
+  }
+
+  &:hover {
+    .subMenu {
+      .dsp(block);
+    }
+  }
+}
+
+.subMenuIcon {
+  &:after {
+    .cnt; .wh(5px); .bg(var(--color)); .ml(.25em); .ib; .br; .va(middle);
+  }
+}
+
+.subMenu {
+  .abs; .t(100%); .l(50%); .trf(translateX(-50%)); .hide;
+  .pad(@xs 0);
+  .bg(@prime); .c(white); .w(25rem);
+  .bdt(@bd solid darken(@prime,5%));
+}
+
+.secondaryItem {
+  .lh(@lineHeight); .fs(@p2);
+
+  &:hover {
+    .bg(darken(@prime,5%))
+  }
+
+  &Title {
+    .pad(.75em 1em); .dsp(block);
+  }
+}

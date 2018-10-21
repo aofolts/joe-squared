@@ -1,0 +1,25 @@
+@import (reference) 'global.less';
+
+.hero {
+  .w; .h(55rem); .flx; .aic; .jc(center);
+
+  @media @phone {
+    .mh(100vh);
+  }
+}
+
+.content {
+  .mw(120rem); .ta(center); .z(1); .pad(var(--h));
+}
+
+.headline {
+  .fs(@h1-var); .c(white); .mb(0);
+}
+
+.background {
+  @mediaBackground(); @backgroundFilter();
+}
+
+.imageWrap {
+  .wh;
+}

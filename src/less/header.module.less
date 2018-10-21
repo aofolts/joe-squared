@@ -1,0 +1,75 @@
+@import (reference) 'global.less';
+
+.header {
+  .pos(fixed); .z(1000); .w; --color: white;
+  --navHeight: 12rem;
+
+  &.is-scrolling {
+    #nav {.bg(@prime);}
+  }
+
+}
+
+.scrollingHeader {
+  box-shadow: 0 5px 5px 0 rgba(0,0,0,.1);
+ 
+  .nav {
+    --navHeight: 9rem; .o(.99); .bg(@prime);
+  }
+}
+
+.nav {
+  .w; .h(var(--navHeight)); .dsp(flex); .aic; .fs(3rem); .pad(0 var(--h));
+  .c(white); .bg(transparent); .jcsb;
+  .trn(all .2s ease-in-out);
+}
+
+.siteName {
+  .h; .aic; .flx;
+}
+
+.siteLogo {
+  .h(40%); .mh(@ms); filter: brightness(1) invert(1);
+}
+
+.menu {
+  .flx; .fs(@p2); .lh(@lineHeight);
+}
+
+.secondaryTitle {
+  .w; .block;
+}
+
+.secondaryItem {
+  &:hover {
+    .bg(@dtrans-lightest);
+  }
+}
+
+.subMenu {
+  .hide;
+}
+
+.primaryItem {
+  .fw(500);
+}
+
+////////////////////////////////////////////////////////
+// NPROGRESS BAR (NPG)
+////////////////////////////////////////////////////////
+
+.nprogress {
+  pointer-events: none;
+}
+
+.nprogressBar {
+  .bg(darken(@prime,50%));
+
+  position: fixed;
+  z-index: 1200;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+}
