@@ -134,7 +134,7 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
-          ...EventCardFragment
+          ...EventCard
         }
       }
     }

@@ -6,10 +6,16 @@ import Image from 'gatsby-image'
 const EventCard = props => {
   const {post} = props
 
-  const {featuredImage,category,body} = post
+  const {
+    featuredImage,
+    category,
+    body,
+    day,
+    month
+  } = post
 
   return (
-    <Link to={`/community/${post.slug}`}>
+    <Link to={`/events/${post.slug}`}>
       <article key={post.id} className={css.card}>
         <div className={css.media}>
           <Image 
@@ -18,10 +24,10 @@ const EventCard = props => {
           />
         </div>
         <div className={css.content}>
-          <div className={css.category}>{category.name}</div>
+          <div className={css.category}>{category.name} — {month} {day}</div>
           <h3 className={css.title}>{post.title}</h3>
           <p className={css.excerpt}>
-            {body.childMarkdownRemark.excerpt}...<br/>
+            {post.content.childMarkdownRemark.excerpt}...<br/>
           </p>
           <p className={css.readMore}>Read More</p>
         </div>
@@ -33,27 +39,13 @@ const EventCard = props => {
 export default EventCard
 
 export const EventCardFragment = graphql`
-  fragment EventCardFragment on ContentfulEvent {
-    id
-    title
-    slug
-    day: eventDate(formatString:"D")
-    month: eventDate(formatString: "MMM")
-    content {
-      childMarkdownRemark {
-        excerpt
-      }
-    }
+  fragment EventCard on ContentfulEvent {
+    ...EventInfo
     featuredImage {
       title
       sizes(maxWidth: 400) {
         ...GatsbyContentfulSizes
       }
-    }
-    category {
-      id
-      name
-      slug
     }
   }
 `

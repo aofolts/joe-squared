@@ -38,11 +38,7 @@ export const BlogCardFragment = graphql`
     id
     title
     slug
-    content {
-      childMarkdownRemark {
-        excerpt
-      }
-    }
+    ...BlogPostContent
     featuredImage {
       title
       sizes(maxWidth: 400) {
@@ -56,29 +52,3 @@ export const BlogCardFragment = graphql`
     }
   }
 `
-
-// export const RichContentFragment = graphql`
-//   fragment RichContentFragment on ContentfulEvent {
-//     content {
-//       nodeType
-//       content {
-//         nodeType
-//         content {
-//           marks {
-//             type
-//           }
-//           value
-//         }
-//         data {
-//           target {
-//             sys {
-//               id
-//               type
-//               linkType
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// `

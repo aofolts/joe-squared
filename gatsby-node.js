@@ -2,7 +2,9 @@ const path = require('path')
 
 const templates = {
   page: path.resolve('./src/templates/page.js'),
-  home: path.resolve('./src/templates/home.js')
+  home: path.resolve('./src/templates/home.js'),
+  community: path.resolve('./src/templates/page-community.js'),
+  events: path.resolve('./src/templates/page-events.js')
 }
 
 exports.createPages = ({graphql,actions}) => {
@@ -45,83 +47,127 @@ exports.createPages = ({graphql,actions}) => {
     )
   })
 
-  // const foodCategoryArchives = new Promise((resolve, reject) => {
-  //   const foodArchiveTemplate = path.resolve('./src/templates/archive-food-category.js')
+  const createFoodCategoryArchives = new Promise((resolve, reject) => {
+    const foodArchiveTemplate = path.resolve('./src/templates/archive-food-category.js')
 
-  //   resolve(
-  //     graphql(
-  //       `
-  //         {
-  //           allContentfulFoodCategory {
-  //             edges {
-  //               node {
-  //                 slug
-  //               }
-  //             }
-  //           }
-  //         }
-  //       `
-  //     ).then(result => {
-  //       if (result.errors) {
-  //         console.log(result.errors)
-  //         reject(result.errors)
-  //       }
+    resolve(
+      graphql(
+        `
+          {
+            allContentfulFoodCategory {
+              edges {
+                node {
+                  slug
+                }
+              }
+            }
+          }
+        `
+      ).then(result => {
+        if (result.errors) {
+          console.log(result.errors)
+          reject(result.errors)
+        }
 
-  //       const posts = result.data.allContentfulFoodCategory.edges
+        const posts = result.data.allContentfulFoodCategory.edges
         
-  //       posts.forEach(post => {
-  //         const {slug} = post.node
+        posts.forEach(post => {
+          const {slug} = post.node
 
-  //         createPage({
-  //           path: `/food/${post.node.slug}`,
-  //           component: foodArchiveTemplate,
-  //           context: {
-  //             slug
-  //           }
-  //         })
-  //       })
-  //     })
-  //   )
-  // })
+          createPage({
+            path: `/food/${post.node.slug}`,
+            component: foodArchiveTemplate,
+            context: {
+              slug
+            }
+          })
+        })
+      })
+    )
+  })
 
-  // const blogPosts = new Promise((resolve, reject) => {
-  //   const blogPostTemplate = path.resolve('./src/templates/single-blog.js')
+  const createEvents = new Promise((resolve, reject) => {
+    const eventTemplate = path.resolve('./src/templates/single-event.js')
 
-  //   resolve(
-  //     graphql(
-  //       `
-  //         {
-  //           allContentfulBlogPost {
-  //             edges {
-  //               node {
-  //                 slug
-  //               }
-  //             }
-  //           }
-  //         }
-  //       `
-  //     ).then(result => {
-  //       if (result.errors) {
-  //         console.log(result.errors)
-  //         reject(result.errors)
-  //       }
+    resolve(
+      graphql(
+        `
+          {
+            allContentfulEvent {
+              edges {
+                node {
+                  slug
+                }
+              }
+            }
+          }
+        `
+      ).then(result => {
+        if (result.errors) {
+          console.log(result.errors)
+          reject(result.errors)
+        }
 
-  //       const posts = result.data.allContentfulBlogPost.edges
+        const posts = result.data.allContentfulEvent.edges
         
-  //       posts.forEach(post => {
-  //         const {slug} = post.node
+        posts.forEach(post => {
+          const {slug} = post.node
 
-  //         createPage({
-  //           path: `/community/${post.node.slug}`,
-  //           component: blogPostTemplate,
-  //           context: {
-  //             slug
-  //           }
-  //         })
-  //       })
-  //     })
-  //   )
-  // })
+          createPage({
+            path: `/events/${post.node.slug}`,
+            component: eventTemplate,
+            context: {
+              slug
+            }
+          })
+        })
+      })
+    )
+  })
 
-  return Promise.all([createPages])
+  const createBlogPosts = new Promise((resolve, reject) => {
+    const blogPostTemplate = path.resolve('./src/templates/single-blog.js')
+
+    resolve(
+      graphql(
+        `
+          {
+            allContentfulBlogPost {
+              edges {
+                node {
+                  slug
+                }
+              }
+            }
+          }
+        `
+      ).then(result => {
+        if (result.errors) {
+          console.log(result.errors)
+          reject(result.errors)
+        }
+
+        const posts = result.data.allContentfulBlogPost.edges
+        
+        posts.forEach(post => {
+          const {slug} = post.node
+
+          createPage({
+            path: `/community/${post.node.slug}`,
+            component: blogPostTemplate,
+            context: {
+              slug
+            }
+          })
+        })
+      })
+    )
+  })
+
+  return Promise.all([
+    createPages,
+    createFoodCategoryArchives,
+    createBlogPosts,
+    createEvents
+  ])
 }

@@ -37,7 +37,7 @@ export default class Video extends React.Component {
   render() {
     const iframe = (
       <iframe className={this.props.className || 'video'}
-        src={this.state.src}
+        src={this.getSrc()}
         frameBorder="0"
         allowFullScreen
         // TODO: accept title argument
