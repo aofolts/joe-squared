@@ -1,6 +1,6 @@
 import {graphql} from 'gatsby'
 import React, { Fragment } from 'react'
-import Wrap from '../components/Wrap'
+import Wrap from '../components/wrap'
 import { withLayout } from '../components/layout'
 import Hero from '../components/hero'
 import css from '../less/archive-blog.module.less'
@@ -54,9 +54,7 @@ css.sorter = sortercss
 // }
 
 const BasicContent = ({
-  layout,
-  setActivePostType,
-  activePostType
+  layout
 }) => {
   const html = layout[0].markdown.childMarkdownRemark.html
 
@@ -70,8 +68,7 @@ const BasicContent = ({
 const ArchiveSection = ({posts,activePostType}) => {
   const cards = posts.map(post => {
     const {
-      id,
-      postType
+      id
     } = post
 
     const wrapClasses = [

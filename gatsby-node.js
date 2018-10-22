@@ -2,9 +2,11 @@ const path = require('path')
 
 const templates = {
   page: path.resolve('./src/templates/page.js'),
-  home: path.resolve('./src/templates/home.js'),
+  food: path.resolve('./src/templates/page-food.js'),
+  home: path.resolve('./src/templates/page-home.js'),
   community: path.resolve('./src/templates/page-community.js'),
-  events: path.resolve('./src/templates/page-events.js')
+  events: path.resolve('./src/templates/page-events.js'),
+  gallery: path.resolve('./src/templates/page-gallery.js')
 }
 
 exports.createPages = ({graphql,actions}) => {

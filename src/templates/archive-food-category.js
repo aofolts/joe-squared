@@ -1,11 +1,11 @@
 import {graphql} from 'gatsby'
 import React from 'react'
-import Wrap from '../components/Wrap'
+import Wrap from '../components/wrap'
 import Layout from '../components/layout'
-import Hero from '../components/Hero'
+import Hero from '../components/hero'
 import css from '../less/archive-foodCategory.module.less'
 import {Link} from 'gatsby'
-import Section from '../components/Section'
+import Section from '../components/section'
 
 const Intro = props => {
   const {
@@ -195,7 +195,8 @@ class FoodCategoryTemplate extends React.Component {
     })
 
     const seo = {
-      description: category.description 
+      title: name,
+      description: category.description || name
     }
 
     return (

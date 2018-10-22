@@ -1,10 +1,9 @@
 import {graphql} from 'gatsby'
 import React,{Component} from 'react'
-import Wrap from '../components/Wrap'
+import Wrap from '../components/wrap'
 import Layout from '../components/layout'
-import Hero from '../components/Hero'
+import Hero from '../components/hero'
 //import css from '../less/archive-blog.module.less'
-import Content from '../components/Content'
 import RichText from '../components/rich-text'
 
 const PostBody = ({markdown}) => {

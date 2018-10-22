@@ -9,7 +9,6 @@ const EventCard = props => {
   const {
     featuredImage,
     category,
-    body,
     day,
     month
   } = post

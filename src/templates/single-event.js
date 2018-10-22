@@ -1,8 +1,8 @@
 import {graphql} from 'gatsby'
-import React, {Fragment,Component} from 'react'
-import Wrap from '../components/Wrap'
+import React, {Component} from 'react'
+import Wrap from '../components/wrap'
 import Layout from '../components/layout'
-import Hero from '../components/Hero'
+import Hero from '../components/hero'
 //import css from '../less/archive-blog.module.less'
 import RichText from '../components/rich-text'
 

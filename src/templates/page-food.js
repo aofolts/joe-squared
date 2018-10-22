@@ -72,7 +72,7 @@ class FoodPage extends React.Component {
     } = page
 
     return (
-      <Fragment {...this.props}>
+      <Fragment>
         <Hero title={title} background={featuredImage} />
         <BasicContent layout={layout}/>
         <CategoriesSection items={foodCategories}/>
