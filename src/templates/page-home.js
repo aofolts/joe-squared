@@ -212,7 +212,7 @@ export const homePageFields = graphql`
       }
       image {
         title
-        sizes(maxWidth: 400) {
+        sizes(maxWidth: 1920) {
           ...GatsbyContentfulSizes
         }
       }
