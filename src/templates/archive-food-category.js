@@ -197,7 +197,7 @@ class FoodCategoryTemplate extends React.Component {
 
     const seo = {
       title,
-      description: description.description || title,
+      description: description ? description.description || title: title,
       keywords: [`baltimore ${title}`,'baltimore food']
     }
 

@@ -31,7 +31,8 @@ class SingleBlogPost extends Component {
 
     const seo = {
       title,
-      description: content.childMarkdownRemark.excerpt
+      description: content.childMarkdownRemark.excerpt,
+      keywords: [title]
     }
   
     return (
