@@ -14,7 +14,7 @@ const Hero = props => {
         className={['mediaBackground',css.background].join(' ')}
       />
       <div className={css.content}>
-        <h1 className={css.headline}>{title}</h1>
+        <h1 className={[css.headline,'balance-text'].join(' ')}>{title}</h1>
       </div>
     </section>
   )

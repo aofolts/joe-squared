@@ -48,8 +48,7 @@ export default SingleBlogPost
 export const pageQuery = graphql`
   query blogPostBySlug($slug: String!) {
     blogPost: contentfulBlogPost(slug: {eq: $slug}) {
-      title
-      slug
+      ...blogPostBasicFields
       category {
         name
         slug
@@ -85,4 +84,10 @@ export const BlogContentFragment = graphql`
   }
 `
 
-
+export const blogPostBasicFields = graphql`
+  fragment blogPostBasicFields on ContentfulBlogPost {
+    title
+    slug
+    id
+  }
+`

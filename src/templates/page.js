@@ -84,6 +84,7 @@ export const PageFields = graphql`
       description {
         description
       }
+      keywords
     }
   }
 `

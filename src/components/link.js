@@ -25,15 +25,27 @@ const Link = ({
     )
   }
   else if (url) {
-    return (
-      <a 
-        className={className}
-        href={url}
-        target='__black'
-      >
-        {children}
-      </a>
-    )
+    if (url[0] === '/') {
+      return (
+        <GatsbyLink 
+          className={className}
+          to={url}
+        >
+          {children}
+        </GatsbyLink>
+      )
+    }
+    else {
+      return (
+        <a 
+          className={className}
+          href={url}
+          target='__black'
+        >
+          {children}
+        </a>
+      )
+    }
   }
   else {
     return <div {...{className}}>{children}</div>

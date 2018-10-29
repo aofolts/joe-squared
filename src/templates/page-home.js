@@ -1,5 +1,4 @@
-import React, {Component,Fragment} from 'react'
-import {Helmet} from 'react-helmet'
+import React, {Fragment} from 'react'
 import {graphql,Link} from 'gatsby'
 import {withLayout} from '../components/layout'
 import Slider from '../components/slider'
@@ -68,58 +67,47 @@ const MenusSection = props => {
       </div>
     </Section>
   )
-} 
-
-class Index extends Component {
-
-  render() {
-    const {
-      data
-    } = this.props
-
-    const {
-      page,
-      blogPostsData,
-      eventsData
-    } = data
-
-    const blogPosts = blogPostsData.edges.map(item => item.node)
-    const events = eventsData.edges.map(item => item.node)
-
-    const {
-      layout
-    } = page
-    
-    const {
-      featuredMenus,
-      intro,
-      menusCopy,
-      quickLinks,
-      video,
-      heroSlider: heroSlides
-    } = layout[0]
-
-    return (
-      <Fragment>
-        <Helmet>
-          <title>Joe Squared | Pizza, Drinks, Music | Baltimore, Maryland</title>    
-        </Helmet>         
-        <Slider slides={heroSlides}/>
-        <IntroSection {...intro} tabs={quickLinks}/>         
-        <VideoSection {...video}/>
-        <MenusSection copy={menusCopy} menus={featuredMenus}/>
-        <BlogSection {...{blogPosts,events}}/>
-      </Fragment>
-    )
-  }
 }
 
-export default withLayout(Index)
+const HomePage = ({ data }) => {
+  const {
+    page,
+    blogPostsData,
+    eventsData
+  } = data
 
-export const pageQuery = graphql`
-  {
+  const blogPosts = blogPostsData.edges.map(item => item.node)
+  const events = eventsData.edges.map(item => item.node)
+
+  const {
+    layout
+  } = page
+  
+  const {
+    featuredMenus,
+    intro,
+    menusCopy,
+    quickLinks,
+    video,
+    heroSlider: heroSlides
+  } = layout[0]
+
+  return (
+    <Fragment>     
+      <Slider slides={heroSlides}/>
+      <IntroSection {...intro} tabs={quickLinks}/>         
+      <VideoSection {...video}/>
+      <MenusSection copy={menusCopy} menus={featuredMenus}/>
+      <BlogSection {...{blogPosts,events}}/>
+    </Fragment>
+  )
+}
+
+export default withLayout(HomePage)
+
+export const query = graphql`
+  query {
     page: contentfulPage(slug: {eq: "home"}) {
-      title
       ...PageFields
       layout {
         ...homePageFields
@@ -202,13 +190,7 @@ export const homePageFields = graphql`
       buttons {
         name
         label
-        externalLink
-        pageLink {
-          slug
-          internal {
-            type
-          }
-        }
+        link
       }
       image {
         title
@@ -219,3 +201,4 @@ export const homePageFields = graphql`
     }
   }
 `
+

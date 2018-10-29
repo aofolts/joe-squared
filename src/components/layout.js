@@ -26,14 +26,20 @@ class Layout extends Component {
       seo
     } = this.props
 
-    const description = seo.description.description
+    const {
+      title,
+      keywords,
+      description
+    } = seo
 
     return (
       <div id='layout'>
         <Helmet>
-          <title>{seo.title}</title>
-          <meta charSet="utf-8" />
+          <title>{title}</title>
+          <meta charSet="UTF-8" />
           <meta name='description' content={description}/>
+          <meta name='keywords' content={keywords.join(',')}/>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
           <link rel='shortcut icon' type='image/png' href={favicon}/>
         </Helmet>
         <Header menu={this.props.menu} />
@@ -48,7 +54,8 @@ class Layout extends Component {
 Layout.propTypes = {
   seo: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired
+    description: PropTypes.string.isRequired,
+    keywords: PropTypes.array.isRequired
   })
 }
 

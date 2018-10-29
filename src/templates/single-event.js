@@ -6,11 +6,17 @@ import Hero from '../components/hero'
 //import css from '../less/archive-blog.module.less'
 import RichText from '../components/rich-text'
 
-const PostBody = ({markdown}) => {
+const PostBody = ({
+  markdown,
+  month,
+  day,
+  time
+}) => {
   const html = markdown.childMarkdownRemark.html
 
   return (
     <Wrap width='small'>
+      <p><b>When:</b> {month.toUpperCase()} {day}, {time}</p>
       <RichText html={html}/>
     </Wrap>
   )
@@ -26,18 +32,22 @@ class SingleEvent extends Component {
     const {
       title,
       content,
-      featuredImage
+      featuredImage,
+      month,
+      day,
+      time
     } = event
 
     const seo = {
       title,
-      description: content.childMarkdownRemark.excerpt
+      description: content.childMarkdownRemark.excerpt,
+      keywords: [title]
     }
   
     return (
       <Layout seo={seo}>
         <Hero title={title} background={featuredImage} />
-        <PostBody markdown={content}/>
+        <PostBody markdown={content} {...{month,day,time}}/>
       </Layout>
     )
   }
@@ -61,11 +71,10 @@ export const pageQuery = graphql`
 
 export const EventInfoFragment = graphql`
   fragment EventInfo on ContentfulEvent {
-    id
-    title
-    slug
+    ...eventBasicFields
     day: eventDate(formatString:"D")
     month: eventDate(formatString: "MMM")
+    time: eventDate(formatString: "h:mma")
     ...EventCategory
     ...EventContent
   }
@@ -89,5 +98,13 @@ export const EventCategoryFragment = graphql`
       name
       slug
     }
+  }
+`
+
+export const eventBasicFields = graphql`
+  fragment eventBasicFields on ContentfulEvent {
+    title
+    slug
+    id
   }
 `

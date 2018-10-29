@@ -7,8 +7,8 @@ const Buttons = ({buttons}) => {
   const buttonElements = buttons.map((button,i) => {
     const {
       label,
-      pageLink,
-      externalLink
+      link: url,
+      page
     } = button
 
     const buttonClasses = [
@@ -21,8 +21,8 @@ const Buttons = ({buttons}) => {
       <Link 
         key={label}
         className={buttonClasses}
-        page={pageLink}
-        url={externalLink}
+        url={url}
+        page={page}
       >
         {label}
       </Link>
@@ -61,7 +61,7 @@ const Slide = ({slide,slideState}) => {
     <div className={slideClasses} key={slide.id}>
       {imageEl}
       <div className={css.slideContent}>
-        <h2 className={css.slideHeadline}>{headline}</h2>
+        <h2 className={[css.slideHeadline,'balance-text'].join(' ')}>{headline}</h2>
         <Buttons buttons={buttons} />
       </div>
     </div>

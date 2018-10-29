@@ -16,7 +16,7 @@ const Intro = props => {
   } = props
 
   const {
-    name,
+    title,
     description
   } = category
 
@@ -39,7 +39,7 @@ const Intro = props => {
   return (
     <Wrap className={css.intro} width='small'>
       {categoryDescription}
-      <p><Link to='/food'>Food</Link> > {name}</p>
+      <p><Link to='/food'>Food</Link> > {title}</p>
       {subCategoryDescription}
       <SubCategoriesNav   
         items={subCategories} 
@@ -182,8 +182,9 @@ class FoodCategoryTemplate extends React.Component {
     } = this.props.data
 
     const {
-      name,
-      featuredImage
+      title,
+      featuredImage,
+      description
     } = category
 
     const subCategories = subCategoryEdges.edges.map(item => {
@@ -195,13 +196,14 @@ class FoodCategoryTemplate extends React.Component {
     })
 
     const seo = {
-      title: name,
-      description: category.description || name
+      title,
+      description: description.description || title,
+      keywords: [`baltimore ${title}`,'baltimore food']
     }
 
     return (
-      <Layout title={category.name} seo={seo}>
-        <Hero title={name} background={featuredImage} />
+      <Layout seo={seo}>
+        <Hero title={title} background={featuredImage} />
         <Intro 
           category={category} 
           subCategories={subCategories}
@@ -222,10 +224,9 @@ export default FoodCategoryTemplate
 export const pageQuery = graphql`
   query foodCategoryQuery($slug: String!) {
     contentfulFoodCategory(slug: { eq: $slug }) {
-      name
-      id
-      slug
+      ...foodCategoryBasicFields
       description {
+        description
         childMarkdownRemark {
           html
         }
@@ -269,6 +270,7 @@ export const pageQuery = graphql`
             id
           }
           description {
+            description
             childMarkdownRemark {
               html
             }
@@ -276,5 +278,13 @@ export const pageQuery = graphql`
         }
       }
     }
+  }
+`
+
+export const foodCategoryBasicFields = graphql`
+  fragment foodCategoryBasicFields on ContentfulFoodCategory {
+    title: name
+    slug
+    id
   }
 `

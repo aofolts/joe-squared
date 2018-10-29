@@ -81,8 +81,10 @@ export default class BlogSection extends Component {
       setActivePostType
     } = this
 
+    console.log(activePostType)
+
     const cards = activePosts.map(post => (
-      activePostType === 'events'
+      activePostType === 'Event'
         ? <EventCard key={post.id} post={post}/>
         : <BlogCard key={post.id} post={post}/>
     ))
