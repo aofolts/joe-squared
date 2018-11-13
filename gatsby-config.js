@@ -41,5 +41,12 @@ module.exports = {
         entities: ['events']
       },
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-119262926-1",
+        anonymize: true,
+        respectDNT: true
+      },
   ],
 }

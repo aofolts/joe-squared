@@ -7,6 +7,7 @@
     "balance-text": "^3.2.1",
     "gatsby": "^2.0.33",
     "gatsby-image": "^2.0.18",
+    "gatsby-plugin-google-analytics": "^2.0.7",
     "gatsby-plugin-less": "^2.0.7",
     "gatsby-plugin-manifest": "^2.0.7",
     "gatsby-plugin-offline": "^2.0.10",
