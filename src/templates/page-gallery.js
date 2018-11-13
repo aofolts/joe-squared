@@ -49,7 +49,7 @@ class GalleryPage extends React.Component {
 
     const {
       photos
-    } = layout[0]
+    } = layout
 
     return (
       <Fragment>

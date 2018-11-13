@@ -8,7 +8,7 @@ import Image from 'gatsby-image'
 import {Link} from 'gatsby'
 
 const BasicContent = props => {
-  const html = props.layout[0].markdown.childMarkdownRemark.html
+  const html = props.layout.markdown.childMarkdownRemark.html
 
   return (
     <Wrap width='small' style={{textAlign: 'center'}}>

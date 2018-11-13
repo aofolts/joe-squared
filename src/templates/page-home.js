@@ -90,7 +90,7 @@ const HomePage = ({ data }) => {
     quickLinks,
     video,
     heroSlider: heroSlides
-  } = layout[0]
+  } = layout
 
   return (
     <Fragment>     
@@ -113,16 +113,19 @@ export const query = graphql`
         ...homePageFields
       }
     }
-    eventsData: allContentfulEvent(
-      limit: 3
-      sort: { 
-        fields: [eventDate] 
-        order: DESC 
+    eventsData: allEventbriteEvents(
+      limit: 3,
+      filter: {
+        status: {eq: "live"}
+      }
+      sort: {
+        order: ASC,
+        fields: [start___local]
       }
     ) {
       edges {
         node {
-          ...EventCard
+          ...EventInfo
         }
       }
     }

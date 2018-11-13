@@ -32,6 +32,14 @@ module.exports = {
     {
       resolve: 'gatsby-source-contentful',
       options: contentfulConfig,
-    }
+    },
+    {
+      resolve: `gatsby-source-eventbrite`,
+      options: {
+        organizationId: `281682084112`,
+        accessToken: `I2K72GPSKKEX5MTKABVP`,
+        entities: ['events']
+      },
+    },
   ],
 }

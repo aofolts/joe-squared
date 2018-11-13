@@ -1,49 +1,73 @@
 import css from '../less/blogCard.module.less'
 import React from 'react'
-import {Link,graphql} from 'gatsby'
-import Image from 'gatsby-image'
+import {graphql} from 'gatsby'
 
 const EventCard = props => {
   const {post} = props
 
   const {
+    id,
+    name,
     featuredImage,
-    category,
-    day,
-    month
+    description,
+    start,
+    url
   } = post
 
+  const {
+    text: title
+  } = name
+
+  const {
+    monthAbbreviated: month,
+    day
+  } = start
+
   return (
-    <Link to={`/events/${post.slug}`}>
-      <article key={post.id} className={css.card}>
+    <a href={url} target='__blank'>
+      <article key={id} className={css.card}>
         <div className={css.media}>
-          <Image 
-            sizes={featuredImage.sizes}
-            className={'mediaBackground'}
-          />
+          <img className='mediaBackground' src={featuredImage.original.url} alt={title}/>
         </div>
         <div className={css.content}>
-          <div className={css.category}>{category.name} — {month} {day}</div>
-          <h3 className={css.title}>{post.title}</h3>
+          <div className={css.category}>{month} {day}</div>
+          <h3 className={css.title}>{title}</h3>
           <p className={css.excerpt}>
-            {post.content.childMarkdownRemark.excerpt}...<br/>
+            {description.html}...<br/>
           </p>
           <p className={css.readMore}>Read More</p>
         </div>
       </article>
-    </Link>
+    </a>
   )
 }
 
 export default EventCard
 
-export const EventCardFragment = graphql`
-  fragment EventCard on ContentfulEvent {
-    ...EventInfo
-    featuredImage {
-      title
-      sizes(maxWidth: 400) {
-        ...GatsbyContentfulSizes
+export const EventInfoFragment = graphql`
+  fragment EventInfo on EventbriteEvents {
+    id
+    name {
+      text
+    }
+    description {
+      html
+    }
+    url
+    start {
+      day: local(formatString: "D")
+      monthAbbreviated: local(formatString: "MMM")
+      time: local(formatString: "h:mma")
+    }
+    end {
+      day: local(formatString: "D")
+      monthAbbreviated: local(formatString: "MMM")
+      time: local(formatString: "h:mma")
+    }
+    featuredImage: logo {
+      id
+      original {
+        url
       }
     }
   }

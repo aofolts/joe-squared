@@ -55,56 +55,56 @@ class SingleEvent extends Component {
 
 export default SingleEvent
 
-export const pageQuery = graphql`
-  query EventBySlug($slug: String!) {
-    event: contentfulEvent(slug: {eq: $slug}) {
-      ...EventInfo
-      featuredImage {
-        title
-        sizes(maxWidth: 1920) {
-          ...GatsbyContentfulSizes
-        }
-      }
-    }
-  }
-`
+// export const pageQuery = graphql`
+//   query EventBySlug($slug: String!) {
+//     event: contentfulEvent(slug: {eq: $slug}) {
+//       ...EventInfo
+//       featuredImage {
+//         title
+//         sizes(maxWidth: 1920) {
+//           ...GatsbyContentfulSizes
+//         }
+//       }
+//     }
+//   }
+// `
 
-export const EventInfoFragment = graphql`
-  fragment EventInfo on ContentfulEvent {
-    ...eventBasicFields
-    day: eventDate(formatString:"D")
-    month: eventDate(formatString: "MMM")
-    time: eventDate(formatString: "h:mma")
-    ...EventCategory
-    ...EventContent
-  }
-`
+// export const EventInfoFragment = graphql`
+//   fragment EventInfo on ContentfulEvent {
+//     ...eventBasicFields
+//     day: eventDate(formatString:"D")
+//     month: eventDate(formatString: "MMM")
+//     time: eventDate(formatString: "h:mma")
+//     ...EventCategory
+//     ...EventContent
+//   }
+// `
 
-export const EventContentFragment = graphql`
-  fragment EventContent on ContentfulEvent {
-    content {
-      childMarkdownRemark {
-        excerpt
-        html
-      }
-    }
-  }
-`
+// export const EventContentFragment = graphql`
+//   fragment EventContent on ContentfulEvent {
+//     content {
+//       childMarkdownRemark {
+//         excerpt
+//         html
+//       }
+//     }
+//   }
+// `
 
-export const EventCategoryFragment = graphql`
-  fragment EventCategory on ContentfulEvent {
-    category {
-      id
-      name
-      slug
-    }
-  }
-`
+// export const EventCategoryFragment = graphql`
+//   fragment EventCategory on ContentfulEvent {
+//     category {
+//       id
+//       name
+//       slug
+//     }
+//   }
+// `
 
-export const eventBasicFields = graphql`
-  fragment eventBasicFields on ContentfulEvent {
-    title
-    slug
-    id
-  }
-`
+// export const eventBasicFields = graphql`
+//   fragment eventBasicFields on ContentfulEvent {
+//     title
+//     slug
+//     id
+//   }
+// `

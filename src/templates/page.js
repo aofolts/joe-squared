@@ -4,30 +4,6 @@ import { withLayout } from '../components/layout'
 import Hero from '../components/hero'
 import RichText from '../components/rich-text'
 
-// const MarkdownLayout = props => {
-//   const html = props.layout.markdown.childMarkdownRemark.html
-
-//   return (
-//     <Wrap width='small'>
-//       <Content html={html} />
-//     </Wrap>
-//   )
-// }
-
-// const LayoutContent = props => {
-//   const {layout} = props
-
-//   const {
-//     __typename: layoutType
-//   } = layout
-
-//   switch (layoutType) {
-//     case 'ContentfulLayoutGallery': return <GalleryContent layout={layout}/>;
-//     case 'ContentfulMarkdown':      return <MarkdownLayout layout={layout}/>;
-//     default: return <h2>No Layout</h2>
-//   }
-// }
-
 class Page extends React.Component {
   
   render() {
@@ -41,7 +17,7 @@ class Page extends React.Component {
       featuredImage
     } = page
 
-    const content = layout[0].markdown.childMarkdownRemark.html
+    const content = layout.markdown.childMarkdownRemark.html
 
     return (
       <Fragment>

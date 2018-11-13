@@ -6,57 +6,11 @@ import Hero from '../components/hero'
 import css from '../less/archive-blog.module.less'
 import Content from '../components/Content'
 import EventCard from '../components/card-event'
-import sortercss from '../less/tabSorter.module.less'
-
-css.sorter = sortercss
-
-// const Nav = ({
-//   activePostType,
-//   setActivePostType
-// }) => {
-//   const postTypes = [
-//     {
-//       name: 'All',
-//       label: 'All'
-//     },
-//     {
-//       name: 'Event',
-//       label: 'Events'
-//     },
-//     {
-//       name: 'Default',
-//       label: 'Blog'
-//     }
-//   ]
-
-//   const items = postTypes.map(({name,label}) => {
-//     const itemClasses = [
-//       css.sorter.navItem,
-//       name === activePostType ? css.sorter.selectedNavItem : null
-//     ].join(' ')
-
-//     const handleClick = () => setActivePostType(name)
-
-//     return (
-//       <li key={name} className={itemClasses} onClick={handleClick}>
-//         {label}
-//       </li>
-//     )
-//   })
-
-//   return (
-//     <nav className={[css.sorter.nav,css.nav].join(' ')}>
-//       <ul>
-//         {items}
-//       </ul>
-//     </nav>
-//   )
-// }
 
 const BasicContent = ({
   layout
 }) => {
-  const html = layout[0].markdown.childMarkdownRemark.html
+  const html = layout.markdown.childMarkdownRemark.html
 
   return (
     <Wrap width='small' style={{textAlign: 'center'}}>
@@ -65,8 +19,10 @@ const BasicContent = ({
   )
 }
 
-const ArchiveSection = ({posts,activePostType}) => {
-  const cards = posts.map(post => {
+const ArchiveSection = ({
+  entries
+}) => {
+  const cards = entries.map(post => {
     const {
       id
     } = post
@@ -101,7 +57,7 @@ class EventsPage extends React.Component {
       events
     } = this.props.data
 
-    const posts = events.edges.map(post => {
+    const entries = events.edges.map(post => {
       return post.node
     })
 
@@ -115,13 +71,13 @@ class EventsPage extends React.Component {
       <Fragment>
         <Hero title={title} background={featuredImage} />
         <BasicContent {...{layout}}/>
-        <ArchiveSection {...{posts}}/>
+        <ArchiveSection {...{entries}}/>
       </Fragment>
     )
   }
 }
 
-export default withLayout(EventsPage) 
+export default withLayout(EventsPage)
 
 export const pageQuery = graphql`
   {
@@ -131,16 +87,19 @@ export const pageQuery = graphql`
         ...MarkdownFragment
       }
     }
-    events: allContentfulEvent(limit:9) {
+    events: allEventbriteEvents(
+      limit: 18,
+      filter: {
+        status: {eq: "live"}
+      }
+      sort: {
+        order: ASC,
+        fields: [start___local]
+      }
+    ) {
       edges {
         node {
           ...EventInfo
-          featuredImage {
-            title
-            sizes(maxWidth: 1920) {
-              ...GatsbyContentfulSizes
-            }
-          }
         }
       }
     }

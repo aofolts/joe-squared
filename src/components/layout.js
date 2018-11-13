@@ -64,18 +64,26 @@ export default Layout
 export function withLayout(Component) {
   return props => {
     const {
-      data
+      data 
     } = props
 
     const {
+      page
+    } = data
+
+    const {
       seo
-    } = data.page
+    } = page
 
     const meta = {
       seo: {
         ...seo,
         description: seo.description.description
       }
+    }
+
+    if (page && page.layout) {
+      page.layout = page.layout[0] || page.layout
     }
 
     return (

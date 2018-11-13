@@ -6,57 +6,11 @@ import Hero from '../components/hero'
 import css from '../less/archive-blog.module.less'
 import Content from '../components/Content'
 import BlogCard from '../components/card-blog'
-import sortercss from '../less/tabSorter.module.less'
-
-css.sorter = sortercss
-
-// const Nav = ({
-//   activePostType,
-//   setActivePostType
-// }) => {
-//   const postTypes = [
-//     {
-//       name: 'All',
-//       label: 'All'
-//     },
-//     {
-//       name: 'Event',
-//       label: 'Events'
-//     },
-//     {
-//       name: 'Default',
-//       label: 'Blog'
-//     }
-//   ]
-
-//   const items = postTypes.map(({name,label}) => {
-//     const itemClasses = [
-//       css.sorter.navItem,
-//       name === activePostType ? css.sorter.selectedNavItem : null
-//     ].join(' ')
-
-//     const handleClick = () => setActivePostType(name)
-
-//     return (
-//       <li key={name} className={itemClasses} onClick={handleClick}>
-//         {label}
-//       </li>
-//     )
-//   })
-
-//   return (
-//     <nav className={[css.sorter.nav,css.nav].join(' ')}>
-//       <ul>
-//         {items}
-//       </ul>
-//     </nav>
-//   )
-// }
 
 const BasicContent = ({
   layout
 }) => {
-  const html = layout[0].markdown.childMarkdownRemark.html
+  const html = layout.markdown.childMarkdownRemark.html
 
   return (
     <Wrap width='small' style={{textAlign: 'center'}}>

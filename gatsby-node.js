@@ -4,8 +4,8 @@ const templates = {
   page: path.resolve('./src/templates/page.js'),
   food: path.resolve('./src/templates/page-food.js'),
   home: path.resolve('./src/templates/page-home.js'),
-  community: path.resolve('./src/templates/page-community.js'),
   events: path.resolve('./src/templates/page-events.js'),
+  community: path.resolve('./src/templates/page-community.js'),
   gallery: path.resolve('./src/templates/page-gallery.js')
 }
 
@@ -88,45 +88,6 @@ exports.createPages = ({graphql,actions}) => {
     )
   })
 
-  const createEvents = new Promise((resolve, reject) => {
-    const eventTemplate = path.resolve('./src/templates/single-event.js')
-
-    resolve(
-      graphql(
-        `
-          {
-            allContentfulEvent {
-              edges {
-                node {
-                  slug
-                }
-              }
-            }
-          }
-        `
-      ).then(result => {
-        if (result.errors) {
-          console.log(result.errors)
-          reject(result.errors)
-        }
-
-        const posts = result.data.allContentfulEvent.edges
-        
-        posts.forEach(post => {
-          const {slug} = post.node
-
-          createPage({
-            path: `/events/${post.node.slug}`,
-            component: eventTemplate,
-            context: {
-              slug
-            }
-          })
-        })
-      })
-    )
-  })
-
   const createBlogPosts = new Promise((resolve, reject) => {
     const blogPostTemplate = path.resolve('./src/templates/single-blog.js')
 
@@ -169,7 +130,6 @@ exports.createPages = ({graphql,actions}) => {
   return Promise.all([
     createPages,
     createFoodCategoryArchives,
-    createBlogPosts,
-    createEvents
+    createBlogPosts
   ])
 }

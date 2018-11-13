@@ -18,7 +18,7 @@ const Nav = ({
     },
     {
       name: 'Default',
-      label: 'Blog'
+      label: 'Other Stuff'
     }
   ]
 
@@ -80,8 +80,6 @@ export default class BlogSection extends Component {
     const {
       setActivePostType
     } = this
-
-    console.log(activePostType)
 
     const cards = activePosts.map(post => (
       activePostType === 'Event'
