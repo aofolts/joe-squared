@@ -48,5 +48,6 @@ module.exports = {
         anonymize: true,
         respectDNT: true
       },
-  ],
+    }
+  ]
 }
