@@ -28,6 +28,12 @@
 
 .foodItem {
   .hide; .fs(@p);
+
+  @supports not (display: grid) {
+    & + .foodItem {
+      .mt(@m);
+    }
+  }
 }
 
 .activeFoodItem {
