@@ -133,7 +133,7 @@ export default class Slider extends React.Component {
 
     this.timer = setInterval(() => {
       this.advanceSlider()
-    },4000);
+    },5000);
   }
 
   stopLoop = () => {
