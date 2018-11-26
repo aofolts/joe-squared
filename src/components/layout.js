@@ -41,6 +41,7 @@ class Layout extends Component {
           <meta name='keywords' content={keywords.join(',')}/>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
           <link rel='shortcut icon' type='image/png' href={favicon}/>
+          <meta name="google-site-verification" content="vjgb9kiM-dGQOFXd5Dw2XgdAIjkw78Fk01kRqYwUDSs" />
         </Helmet>
         <Header menu={this.props.menu} />
           {this.props.children}
