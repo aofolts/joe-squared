@@ -22,6 +22,7 @@ if (!spaceId || !accessToken) {
 module.exports = {
   siteMetadata: {
     title: 'Gatsby Default Starter',
+    siteUrl: 'https://www.joesquared.com'
   },
   plugins: [
     'gatsby-plugin-react-helmet',
