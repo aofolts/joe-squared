@@ -7,14 +7,14 @@ export const getPagePath = page => {
   let slug = page.slug
 
   switch (page.internal.type) {
-    case 'ContentfulFoodCategory': base = 'food'; break;
-    case 'ContentfulBlogPost': base = 'community'; break;
+    case 'ContentfulFoodCategory': base = '/food'; break;
+    case 'ContentfulBlogPost': base = '/community'; break;
     default: base = '';
   }
 
   if (slug === 'home') slug = ''
 
-  return `/${base}/${slug}`
+  return `${base}/${slug}`
 }
 
 export const getPageUrl = page => {
