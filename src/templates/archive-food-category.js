@@ -176,7 +176,7 @@ class FoodCategoryTemplate extends React.Component {
     } = this.state
 
     const {
-      contentfulFoodCategory: category,
+      page,
       allContentfulFoodItem: itemEdges,
       allContentfulFoodSubCategory: subCategoryEdges
     } = this.props.data
@@ -185,7 +185,7 @@ class FoodCategoryTemplate extends React.Component {
       title,
       featuredImage,
       description
-    } = category
+    } = page
 
     const subCategories = subCategoryEdges.edges.map(item => {
       return item.node
@@ -201,11 +201,18 @@ class FoodCategoryTemplate extends React.Component {
       keywords: [`baltimore ${title}`,'baltimore food']
     }
 
+    const dataForLayout = {
+      page: {
+        ...page,
+        seo
+      }
+    }
+
     return (
-      <Layout seo={seo}>
+      <Layout data={dataForLayout}>
         <Hero title={title} background={featuredImage} />
         <Intro 
-          category={category} 
+          category={page} 
           subCategories={subCategories}
           activeSubCategory={activeSubCategory}
           setActiveSubCategoryById={this.setActiveSubCategoryById}
@@ -221,9 +228,20 @@ class FoodCategoryTemplate extends React.Component {
 
 export default FoodCategoryTemplate
 
+export const foodCategoryBasicFields = graphql`
+  fragment foodCategoryBasicFields on ContentfulFoodCategory {
+    title: name
+    slug
+    id
+    internal {
+      type
+    }
+  }
+`
+
 export const pageQuery = graphql`
   query foodCategoryQuery($slug: String!) {
-    contentfulFoodCategory(slug: { eq: $slug }) {
+    page: contentfulFoodCategory(slug: { eq: $slug }) {
       ...foodCategoryBasicFields
       description {
         description
@@ -231,11 +249,9 @@ export const pageQuery = graphql`
           html
         }
       }
+      
       featuredImage {
-        title
-        sizes(maxWidth: 1920) {
-          ...GatsbyContentfulSizes
-        }
+        ...imageHero
       }
     }
     allContentfulFoodItem(
@@ -281,10 +297,3 @@ export const pageQuery = graphql`
   }
 `
 
-export const foodCategoryBasicFields = graphql`
-  fragment foodCategoryBasicFields on ContentfulFoodCategory {
-    title: name
-    slug
-    id
-  }
-`

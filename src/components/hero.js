@@ -10,7 +10,7 @@ const Hero = props => {
   return (
     <section id='hero' className={css.hero}>
       <Image 
-        sizes={background.sizes}
+        {...background}
         className={['mediaBackground',css.background].join(' ')}
       />
       <div className={css.content}>

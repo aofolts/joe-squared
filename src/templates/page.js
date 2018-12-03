@@ -49,11 +49,11 @@ export const PageFields = graphql`
   fragment PageFields on ContentfulPage {
     title,
     slug,
+    internal {
+      type
+    }
     featuredImage {
-      title
-      sizes(maxWidth: 1920) {
-        ...GatsbyContentfulSizes
-      }
+      ...imageHero
     }
     seo {
       title

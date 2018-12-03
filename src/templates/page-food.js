@@ -33,7 +33,7 @@ const CategoriesSection = props => {
             <Image 
               outerWrapperClassName='mediaBackground' 
               className={'mediaBackground'}
-              sizes={featuredImage.sizes}
+              {...featuredImage}
             />
           </div>
           <h3 className={css.cardTitle}>{name}</h3>
@@ -103,10 +103,7 @@ export const pageQuery = graphql`
             }
           }
           featuredImage {
-            title
-            sizes(maxWidth: 1920) {
-              ...GatsbyContentfulSizes
-            }
+            ...imageHero
           }
         }
       }

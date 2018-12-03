@@ -2,6 +2,26 @@ import React from 'react'
 import {Link as GatsbyLink} from 'gatsby'
 import PropTypes from 'prop-types'
 
+export const getPagePath = page => {
+  let base = ''
+  let slug = page.slug
+
+  switch (page.internal.type) {
+    case 'ContentfulFoodCategory': base = 'food'; break;
+    default: base = '';
+  }
+
+  if (slug === 'home') slug = ''
+
+  return `${base}/${slug}`
+}
+
+export const getPageUrl = page => {
+  const path = getPagePath(page)
+
+  return `https://www.joesquared.com${path}`
+}
+
 const Link = ({
   page,
   url,
@@ -9,11 +29,7 @@ const Link = ({
   children
 }) => {
   if (page) {
-    const type = page.internal.type.replace('Contentful','').toLowerCase()
-
-    const slug = type === 'page'
-      ? page.slug
-      : `${type}/${page.slug}`
+    const slug = getPagePath(page)
 
     return (
       <GatsbyLink 

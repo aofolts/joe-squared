@@ -4,6 +4,7 @@ import Footer from './footer'
 import {Helmet} from 'react-helmet'
 import PropTypes from 'prop-types'
 import favicon from '../images/favicon.png'
+import {getPagePath} from './link'
 
 class Layout extends Component {
 
@@ -23,25 +24,25 @@ class Layout extends Component {
 
   render() {
     const {
-      seo
+      data
     } = this.props
 
     const {
-      title,
-      keywords,
-      description
-    } = seo
+      page
+    } = data
 
     return (
       <div id='layout'>
         <Helmet>
-          <title>{title}</title>
+          <title>{page.title}</title>
           <meta charSet="UTF-8" />
-          <meta name='description' content={description}/>
-          <meta name='keywords' content={keywords.join(',')}/>
+          <meta name='description' content={page.description}/>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
           <link rel='shortcut icon' type='image/png' href={favicon}/>
-          <meta name="google-site-verification" content="vjgb9kiM-dGQOFXd5Dw2XgdAIjkw78Fk01kRqYwUDSs" />
+          <meta property="og:title" content={page.title}></meta>
+          <meta property="og:description" content={page.description}/>
+          <meta property="og:image" content={page.featuredImage.fluid.srcSet}/>
+          <meta property="og:url" content={getPagePath(page)}/>
         </Helmet>
         <Header menu={this.props.menu} />
           {this.props.children}
@@ -49,14 +50,21 @@ class Layout extends Component {
       </div>
     )
   }
-
 }
 
 Layout.propTypes = {
-  seo: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    keywords: PropTypes.array.isRequired
+  data: PropTypes.shape({
+    page: PropTypes.shape({
+      featuredImage: PropTypes.shape({
+        fluid: PropTypes.shape({
+          srcSet: PropTypes.string.isRequired
+        })
+      }),
+      seo: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired
+      })
+    })
   })
 }
 
@@ -72,23 +80,24 @@ export function withLayout(Component) {
       page
     } = data
 
-    const {
-      seo
-    } = page
-
-    const meta = {
-      seo: {
-        ...seo,
-        description: seo.description.description
+    const dataForLayout = {
+      page: {
+        ...data.page,
+        seo: {
+          ...data.page.seo,
+          description: data.page.seo.description.description
+        }
       }
     }
 
+    // Patch for Contentful + GraphQL single reference field 
+    // with multiple types issue: #10090
     if (page && page.layout) {
-      page.layout = page.layout[0] || page.layout
+      data.page.layout = page.layout[0] || page.layout
     }
 
     return (
-      <Layout {...meta}>
+      <Layout data={dataForLayout}>
         <Component {...props}/>
       </Layout>
     )
