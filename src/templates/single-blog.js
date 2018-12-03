@@ -35,8 +35,15 @@ class SingleBlogPost extends Component {
       keywords: [title]
     }
   
+    const dataForLayout = {
+      page: {
+        ...blogPost,
+        seo
+      }
+    }
+
     return (
-      <Layout seo={seo}>
+      <Layout data={dataForLayout}>
         <Hero title={title} background={featuredImage} />
         <PostBody markdown={content}/>
       </Layout>
@@ -54,11 +61,11 @@ export const pageQuery = graphql`
         name
         slug
       }
+      internal {
+        type
+      }
       featuredImage {
-        title
-        sizes(maxWidth: 1920) {
-          ...GatsbyContentfulSizes
-        }
+        ...imageHero
       }
       author {
         name
