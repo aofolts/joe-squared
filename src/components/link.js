@@ -8,12 +8,13 @@ export const getPagePath = page => {
 
   switch (page.internal.type) {
     case 'ContentfulFoodCategory': base = 'food'; break;
+    case 'ContentfulBlogPost': base = 'community'; break;
     default: base = '';
   }
 
   if (slug === 'home') slug = ''
 
-  return `${base}/${slug}`
+  return `/${base}/${slug}`
 }
 
 export const getPageUrl = page => {
@@ -29,12 +30,12 @@ const Link = ({
   children
 }) => {
   if (page) {
-    const slug = getPagePath(page)
+    const path = getPagePath(page)
 
     return (
       <GatsbyLink 
         className={className}
-        to={`/${slug}`}
+        to={path}
       >
         {children}
       </GatsbyLink>

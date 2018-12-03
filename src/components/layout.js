@@ -4,7 +4,7 @@ import Footer from './footer'
 import {Helmet} from 'react-helmet'
 import PropTypes from 'prop-types'
 import favicon from '../images/favicon.png'
-import {getPagePath} from './link'
+import {getPageUrl} from './link'
 
 class Layout extends Component {
 
@@ -41,8 +41,8 @@ class Layout extends Component {
           <link rel='shortcut icon' type='image/png' href={favicon}/>
           <meta property="og:title" content={page.title}></meta>
           <meta property="og:description" content={page.description}/>
-          <meta property="og:image" content={page.featuredImage.fluid.srcSet}/>
-          <meta property="og:url" content={getPagePath(page)}/>
+          <meta property="og:image" content={page.featuredImage.fluid.src}/>
+          <meta property="og:url" content={getPageUrl(page)}/>
         </Helmet>
         <Header menu={this.props.menu} />
           {this.props.children}
